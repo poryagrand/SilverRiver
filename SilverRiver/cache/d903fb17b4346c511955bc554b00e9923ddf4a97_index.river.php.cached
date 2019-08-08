@@ -1,0 +1,64 @@
+<?php
+    $src = [
+        "num 1"=>64,
+        "num 2"=>234,
+        "num 3"=>566
+    ];
+?>
+
+this is a shared data: <?php echo $this->share("mytest"); ?>
+
+<br/>
+
+<?php if (  basename('E:\xampp\htdocs\__River\SilverRiver\Init.directives.php')  == "Init.directives.php" ) :  ?> 
+    - it is init directive
+<?php else : ?> 
+    - it is not init directive. it is : <?php echo basename('E:\xampp\htdocs\__River\SilverRiver\Init.directives.php'); ?> <br/>
+    - the hash of address is <?php echo  sha1( basename('E:\xampp\htdocs\__River\SilverRiver\Init.directives.php') ) ; ?>
+ <?php endif; ?>
+
+<br/>
+
+<?php if (count( $src ) == 2) :  ?> 
+    <?php foreach ($src as $key=>$val) {  ?> 
+        <?php echo $key; ?> : <?php echo $val; ?>
+     <?php } ?>
+<?php elseif ( count($src) < 2 ) : ?>
+    it is smaller than 2 
+<?php else : ?>
+    not acceptable
+ <?php endif; ?>
+
+<br/>
+
+    <select id="myDrop" name="myDrop" data-hash="aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d">
+    <?php if( isset( $src ) ){
+        $src_content = "<option value='((VALUE))'>((TEXT))</option>";
+        foreach($src as $src_key=>$src_value){
+            echo str_replace(
+                "((VALUE))",$src_value,
+                str_replace(
+                    "((TEXT))",$src_key,
+                    $src_content
+                )
+            );
+        }
+    } ?>
+    </select>
+
+<br/>
+
+<span id="myspan" data-hash="aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d"></span>
+
+<script>
+console.log( document.getElementById("myDrop").value );
+document.getElementById("myspan").innerHTML = document.getElementById("myspan").getAttribute("data-hash");
+</script>
+
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>E:\xampp\htdocs\__River\SilverRiver\River.class.php(214) : eval()'d code:2:</small>
+<b>array</b> <i>(size=3)</i>
+  0 <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  1 <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>2</font>
+  2 <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>34</font>
+</pre>
