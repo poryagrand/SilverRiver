@@ -2,7 +2,7 @@
 
 ## About SilverRiver
 
-**silver river** is a simple **php template engine** with internal simple **caching system** that supports to defined **html** tags , element , **attributes** and inline and block **directives**. it has no internal predefined directives and tags so it needs to be defined by the developer.
+**silver river** is a simple **php template engine** with internal simple **caching system** that supports to defined **html** tags , elements , **attributes** and inline and block **directives**. it has no internal predefined directives and tags so it needs to be defined by the developer.
 
 ## First Step
 to access library just include the ``loader.php`` and use functions.
@@ -34,13 +34,15 @@ directives can be separated into two parts.
 - Inline Directives
 - Block Directives
 
-both of them as the same general syntax but the **block directive** has an end part. 
+both of them has same general syntax but the **block directive** has an end part. 
 
 general syntax: 
 ```php
 @[DIRECTIVE NAME]( [ARGUMENTS] ) ... @end[DIRECTIVE NAME]
 ```
 the above example is a block example. the inline one has no **end** part.
+
+**note:** the __arguments__ is optional.
 
 block example:
 ```php
@@ -56,11 +58,11 @@ inline example:
 <p>user name is : @auth.name </p>
 <p>now : @now.format("Y-M-D")</p>
 ```
-there is a special note is that , the inline directives have two phase of evaluation. one of them is **InText** evaluation and the other is **InPHP** .
+there is a special note that is , the both directives have two phase of evaluation. one of them is **InText** evaluation and the other is **InPHP** .
 
-both of them can be handled by the directive callback handler.
+both of phases can be handled by the directive callback handler.
 
-example:
+example on inline:
 ```php
 hello 
 @if( @@auth.gender == "man" )
@@ -74,13 +76,13 @@ in here the **@@auth.name** with double **@** is an **InPHP** evaluation. the lo
 the directive name must be like this RegExp ``[A-Za-z_-][A-Za-z0-9_-.]*`` .
 
 #### Extend Functions
-**note**: the ``$ref`` is pointing to the current river instance . you can access current instance share data by calling ``$this->share(...)``
+**note**: the ``$ref`` is pointing to the current **River** instance . you can access current instance share data by calling ``$this->share(...)``
 
 define a block directive:
 ```php
 use PoryaGrand\SilverRiver\River;
 
-River::directiveBlock("if",function($ref,$arg,$content){
+River::directiveBlock("if",function($ref,$arg,$content,$exec){
     if( empty($arg) ){
         return new RiverHandleException("if directive needs arguments!");
     }
@@ -120,7 +122,7 @@ it has 5 kind of syntax.
 
 
 ### HTML Tags
-these tags are like html tags with difference in tag name. the tag name must be start with ``server:`` , like ``<server:input />`` or ``<server:dropdown src="..."> ... </server:dropdown>``
+these tags are like html tags with difference in tag name. the tag name must be started with ``server:`` , like ``<server:input />`` or ``<server:dropdown src="..."> ... </server:dropdown>``
 
 the block tags have content that can be nested template too like directives.
 
