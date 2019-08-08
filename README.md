@@ -228,7 +228,7 @@ River::attribute("id",function($ref,$val) use(&$counter){
 the caching system is so simple. it will cache files until any modification on main file with the same path.
 
 ```php
-use PoryaGrand\SilverRiver\River;
+use PoryaGrand\SilverRiver\RiverCache;
 
 RiverCahce::is( $path ) // dose the file is in cache?
 
