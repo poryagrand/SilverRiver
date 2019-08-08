@@ -18,7 +18,7 @@ $r = new River( "river.php" );
   * @param array shareData (option => [])
   * @param bool $execOutPut (option => true)
   */
-$res = $r->render("./SilverRiver/sample/index.river.php",[
+$res = $r->render("./SilverRiver/sample/index",[
   "myTest"=>123
 ],true);
 
