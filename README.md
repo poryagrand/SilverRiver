@@ -200,9 +200,9 @@ River::blockTag("php",function($ref,$attrs,$content){
 });
 
 #--- in template.river.php
-<php>
+<server:php>
   echo "this will be printed statically";
-</php>
+</server:php>
 ```
 
 ### Attributes
