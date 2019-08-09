@@ -209,6 +209,9 @@ River::blockTag("php",function($ref,$attrs,$content){
 like tags , this is like the html one too. just must be started with ``server:`` .
 attributes can be used in server tags and html tags in same way.
 
+**note:** an important note is that attributes formats can be written in all over the html code. the engine doesn't create tree from non server tags. just the server tag and its attributes will be read together by the engine.
+
+
 define:
 ```php
 use PoryaGrand\SilverRiver\River;
